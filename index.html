@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MRCH RECEIPT 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f5f5;--card:#fff;--ink:#1a1a1c;--sub:#6b6b70;--line:#d9d5cc;--red:#d7263d;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",sans-serif}
+main{max-width:560px;margin:0 auto;padding:28px 20px 60px}
+.mono{font-family:"IBM Plex Mono",monospace}
+.eyebrow{font-family:"IBM Plex Mono",monospace;letter-spacing:.3em;font-size:13px;color:var(--sub)}
+h1{margin:6px 0 0;font-family:Oswald,sans-serif;font-weight:700;line-height:1;text-transform:uppercase}
+h1 .y{display:block;font-size:84px}
+h1 .t{display:block;font-size:42px;margin-top:14px}
+hr.thick{border:0;border-top:3px solid var(--ink);margin:22px 0}
+.pill{display:table;border:1px solid var(--line);border-radius:999px;padding:8px 16px;margin:0 0 10px;font-family:"IBM Plex Mono",monospace;font-size:14px;background:var(--card)}
+.pill b{font-weight:500}button.pill{display:block;width:fit-content;color:var(--ink);cursor:pointer}
+.count{display:flex;align-items:baseline;gap:12px;margin:26px 0 12px;font-family:Oswald,sans-serif}
+.count span:first-child{font-size:54px;font-weight:700}
+.count span:last-child{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--sub)}
+.list{border-top:1px solid var(--line);padding-top:12px}
+.ev{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:12px solid var(--line);border-radius:4px;padding:32px 16px 18px;margin-bottom:12px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;position:relative}
+.ev .d{font-family:"IBM Plex Mono",monospace;font-weight:500;color:var(--sub);font-size:15px;min-width:64px;padding-top:4px}
+.ev .b{flex:1}
+.ev .t{font-weight:700;font-size:19px;line-height:1.3;word-break:keep-all;overflow-wrap:break-word}
+.ev .v{color:var(--sub);margin-top:6px;font-size:15px}
+.tags{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.tags span{border:1px solid var(--line);border-radius:3px;padding:3px 9px;font-size:13px;color:var(--sub)}
+.ev .m{position:absolute;right:14px;top:9px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--line)}
+.ev.seen{border-left-color:#8EC96D}
+.ev.seen .m{color:#8EC96D;font-weight:500}
+.ev.best{border-left-color:#6FADCF;border-color:#6FADCF}
+.ev.best .m{color:#6FADCF;font-weight:500}
+.sep{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;color:var(--sub);margin:22px 0 10px}
+.ev.off{opacity:.45;cursor:not-allowed;background:transparent}.ev.off .t{text-decoration:line-through}.ev.off .m{color:var(--sub)}
+label{display:block;font-family:"IBM Plex Mono",monospace;letter-spacing:.2em;font-size:13px;color:var(--sub);margin:30px 0 10px;text-transform:uppercase}
+textarea,input{width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:3px;padding:14px;font:inherit;font-size:17px}
+textarea{height:110px;resize:vertical}
+.hint{color:var(--sub);font-size:14px;margin-top:8px}
+button.act{display:block;width:100%;margin-top:14px;padding:18px;border-radius:3px;font:700 19px "Noto Sans KR",sans-serif;cursor:pointer}
+#bR{background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
+#bC{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+button.act:disabled{opacity:.4;cursor:not-allowed}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--sub);font-size:14px}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;z-index:50}
+#modal.on{display:flex}
+#modal .box{max-height:80vh;overflow:auto;border-radius:4px}
+#modal img{display:block;max-width:100%;width:min(420px,100%)}
+#modal p{color:#fff;font-size:14px;margin:14px 0 8px;text-align:center}
+#modal button{background:#fff;color:#111;border:0;border-radius:3px;padding:10px 24px;font:700 15px "Noto Sans KR",sans-serif;cursor:pointer}
+</style>
+</head>
+<body>
+<main>
+  <h1><span class="y">2026</span><span class="t">MRCH RECEIPT</span></h1>
+  <hr class="thick">
+  <div class="pill">Tap once 》<b style="color:#8EC96D">watched</b></div>
+  <div class="pill">Tap twice 》<b style="color:#6FADCF">love it</b></div>
+  <div class="pill">Tap third 》Clear</div>
+  <button class="pill" id="clr" type="button">ALL CLEAR</button>
+  <div class="count"><span id="n">0</span><span id="tot"></span></div>
+  <div class="list" id="list"></div>
+
+  <label for="memo">Memo — hidden if left empty</label>
+  <textarea id="memo" maxlength="120" placeholder="덕분에 블록버스터처럼 재밌고, 다큐멘터리 3일처럼 따뜻함 넘치는 2026년이었어"></textarea>
+  <div class="hint">Up to 120 characters</div>
+  <label for="name">Name — optional</label>
+  <input id="name" maxlength="20" placeholder="Printed on the receipt and card">
+  <button class="act" id="bR" disabled>🧾 영수증 뽑기</button>
+  <button class="act" id="bC" disabled>🖼 리캡 카드 뽑기</button>
+  <footer>비공식 팬 제작 페이지 · 문의나 정정은 제작자에게 알려주세요.</footer>
+</main>
+<div id="modal"><div class="box"><img id="out" alt="결과 이미지"></div><p>이미지를 길게 눌러 저장하세요</p><button id="close">닫기</button></div>
+
+<script>
+// x:true → 취소된 일정(선택 불가, 카운트 제외)
+const F="페스티벌",U="대학축제",O="해외",S1="단독",M="기타";
+const E=[
+{d:"03.21",t:"THE GLOW 2026",v:"",g:[F]},
+{d:"03.28",t:"윤마치를 축하하세요",v:"",g:[S1]},
+{d:"04.04",t:"YENA LIVE TOUR : 잡힐 듯 말 듯 한, 2세계!",v:"",g:["콘서트"]},
+{d:"04.05",t:"체리블라썸 뮤직 페스티벌",v:"",g:[F]},
+{d:"04.08",t:"CJ 20주년 콘서트 시리즈",v:"",g:["콘서트"]},
+{d:"04.11",t:"2026 KT&G 상상실현 페스티벌",v:"",g:[F]},
+{d:"05.21",t:"아주대학교 대동제 ACENTIA",v:"",g:[U]},
+{d:"05.22",t:"CJ문화재단 20주년 팝업스토어",v:"",g:[M]},
+{d:"05.24",t:"피크 페스티벌 2026",v:"",g:[F]},
+{d:"05.28",t:"연세대학교 무악대동제 UNIT:Y",v:"",g:[U]},
+{d:"05.28",t:"한양대학교 RACHIOS : 찬란",v:"",g:[U]},
+{d:"06.05",t:"2026 Road to BU-ROCK Seoul",v:"",g:[F]},
+{d:"06.21",t:"서울 파크 뮤직 페스티벌",v:"",g:[F]},
+{d:"07.03",t:"Donauinselfest @오스트리아",v:"",g:[O]},
+{d:"07.08",t:"I’m live EP.430",v:"",g:["방송"]},
+{d:"07.12",t:"Soundthru 윤마치를 듣다",v:"",g:[M]},
+{d:"07.19",t:"SOUNDBERRY FESTA’ 26",v:"",g:[F]},
+{d:"07.26",t:"별방수면회 : 별이 부르는 방에",v:"",g:["방송"]},
+{d:"07.31",t:"2026 인천 펜타포트 락 페스티벌",v:"",g:[F]},
+{d:"08.15",t:"2026 전주 얼티밋 뮤직 페스티벌",v:"",g:[F]},
+{d:"08.27",t:"KOREA SPOTLIGHT @인도네시아",v:"",g:[O]},
+{d:"08.29",t:"2026 ASEAN Festival @인도네시아",v:"",g:[O]},
+{d:"09.10",t:"MUSE ON 2026 FESTIVAL",v:"",g:[F]},
+{d:"09.12",t:"2026 이슬라이브 페스티벌",v:"",g:[F]},
+{d:"09.17",t:"LCDC LIVE",v:"",g:[M]},
+{d:"09.19",t:"2026 우리 모모콘",v:"",g:["콘서트"]},
+{d:"09.30",t:"교통대학교 충주캠퍼스 축제",v:"",g:[U]},
+{d:"10.04",t:"2026 부산 국제 록 페스티벌",v:"",g:[F]},
+{d:"10.25",t:"취소됨",v:"",g:["취소"],x:true},
+{d:"10.31",t:"단독콘서트 [공생관계 : We Live Together]",v:"YES24 LIVE HALL · 18:00",g:[S1]},
+{d:"11.01",t:"단독콘서트 [공생관계 : We Live Together]",v:"YES24 LIVE HALL · 17:00",g:[S1]},
+{d:"11.21",t:"2026 문학나눔캠프",v:"",g:[M]},
+{d:"11.22",t:"원더리벳 2026",v:"",g:[F]}
+];
+const N=E.filter(e=>!e.x).length;
+// 위치 태그 (서울시 / 경기-고양시 / 해외는 나라)
+const LOC={
+"THE GLOW 2026":"경기-고양시",
+"윤마치를 축하하세요":"서울시",
+"YENA LIVE TOUR : 잡힐 듯 말 듯 한, 2세계!":"서울시",
+"체리블라썸 뮤직 페스티벌":"경남-창원시",
+"CJ 20주년 콘서트 시리즈":"서울시",
+"2026 KT&G 상상실현 페스티벌":"강원-춘천시",
+"아주대학교 대동제 ACENTIA":"경기-수원시",
+"CJ문화재단 20주년 팝업스토어":"서울시",
+"피크 페스티벌 2026":"서울시",
+"연세대학교 무악대동제 UNIT:Y":"서울시",
+"한양대학교 RACHIOS : 찬란":"서울시",
+"2026 Road to BU-ROCK Seoul":"서울시",
+"서울 파크 뮤직 페스티벌":"서울시",
+"Donauinselfest @오스트리아":"오스트리아",
+"I’m live EP.430":"서울시",
+"Soundthru 윤마치를 듣다":"서울시",
+"SOUNDBERRY FESTA’ 26":"경기-고양시",
+"별방수면회 : 별이 부르는 방에":"서울시",
+"2026 인천 펜타포트 락 페스티벌":"인천시",
+"2026 전주 얼티밋 뮤직 페스티벌":"전북-전주시",
+"KOREA SPOTLIGHT @인도네시아":"인도네시아",
+"2026 ASEAN Festival @인도네시아":"인도네시아",
+"MUSE ON 2026 FESTIVAL":"서울시",
+"2026 이슬라이브 페스티벌":"인천시",
+"LCDC LIVE":"서울시",
+"2026 우리 모모콘":"경기-과천시",
+"교통대학교 충주캠퍼스 축제":"충북-충주시",
+"2026 부산 국제 록 페스티벌":"부산시",
+"단독콘서트 [공생관계 : We Live Together]":"서울시",
+"2026 문학나눔캠프":"강원-춘천시",
+"원더리벳 2026":"경기-고양시"
+};
+const KEY="mrch26b",$=s=>document.querySelector(s);
+let S={};
+try{S=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){S={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+$("#tot").textContent="/ "+N+"개 행사";
+const list=$("#list");
+E.forEach((e,i)=>{
+  if(e.d==="--.--"&&(i===0||E[i-1].d!=="--.--")){const s=document.createElement("div");s.className="sep";s.textContent="DATE TBD";list.appendChild(s)}
+  const el=document.createElement("div");el.className="ev"+(e.x?" off":"");el.dataset.i=i;
+  el.innerHTML='<div class="d"></div><div class="b"><div class="t"></div><div class="v"></div><div class="tags"></div></div><div class="m">·</div>';
+  el.querySelector(".d").textContent=e.d;el.querySelector(".t").textContent=e.t;el.querySelector(".v").textContent=e.v;if(!e.v)el.querySelector(".v").remove();if(e.x)el.querySelector(".m").textContent="취소";
+  e.g.concat(LOC[e.t]?[LOC[e.t]]:[]).forEach(x=>{const s=document.createElement("span");s.textContent=x;el.querySelector(".tags").appendChild(s)});
+  el.onclick=e.x?null:()=>{
+    const c=S[i]||0;
+    if(c===0)S[i]=1;
+    else if(c===1)S[i]=2;
+    else delete S[i];
+    save();paint();
+  };
+  list.appendChild(el);
+});
+function paint(){
+  let n=0;
+  document.querySelectorAll(".ev:not(.off)").forEach(el=>{
+    const c=S[el.dataset.i]||0;
+    el.classList.toggle("seen",c===1);el.classList.toggle("best",c===2);
+    el.querySelector(".m").textContent=c===2?"♥ LOVE IT":c===1?"WATCHED ✓":"·";
+    if(c)n++;
+  });
+  $("#n").textContent=n;
+  $("#bR").disabled=$("#bC").disabled=!n;
+}
+paint();
+
+let ct;$("#clr").onclick=()=>{
+  const b=$("#clr");
+  if(b.dataset.a){S={};save();paint();b.textContent="ALL CLEAR";delete b.dataset.a;clearTimeout(ct);return}
+  b.dataset.a=1;b.textContent="한 번 더 누르면 전부 지워져요";
+  ct=setTimeout(()=>{b.textContent="ALL CLEAR";delete b.dataset.a},3000);
+};
+// ---- 이미지 생성 ----
+const MONO='"IBM Plex Mono",monospace',KR='"Noto Sans KR",sans-serif',DISP='Oswald,sans-serif';
+function wrap(ctx,text,max){
+  const out=[];let cur="";
+  for(const ch of text){
+    if(ctx.measureText(cur+ch).width>max){out.push(cur);cur=ch}else cur+=ch;
+  }
+  if(cur)out.push(cur);return out;
+}
+async function fonts(){
+  try{await Promise.all(['500 20px "IBM Plex Mono"','700 20px Oswald','400 20px "Noto Sans KR"','700 20px "Noto Sans KR"'].map(f=>document.fonts.load(f,"한A0")))}catch(e){}
+}
+function picked(){
+  const arr=Object.keys(S).map(Number).sort((a,b)=>a-b);
+  return arr.map(i=>({...E[i],best:S[i]===2}));
+}
+function show(cv){
+  $("#out").src=cv.toDataURL("image/png");
+  $("#modal").classList.add("on");
+}
+$("#close").onclick=()=>$("#modal").classList.remove("on");
+
+$("#bR").onclick=async()=>{
+  await fonts();
+  const items=picked(),memo=$("#memo").value.trim(),name=$("#name").value.trim();
+  const W=600,P=44,tmp=document.createElement("canvas").getContext("2d");
+  tmp.font='400 18px '+KR;
+  const rows=items.map(it=>({it,lines:wrap(tmp,it.t,W-P*2-110-90)}));
+  const memoLines=memo?wrap(tmp,memo,W-P*2):[];
+  let H=300;rows.forEach(r=>H+=r.lines.length*26+14);
+  H+=140+(memoLines.length?memoLines.length*26+50:0)+(name?50:0)+110;
+  const cv=document.createElement("canvas");cv.width=W;cv.height=H;
+  const c=cv.getContext("2d");
+  c.fillStyle="#fbfaf6";c.fillRect(0,0,W,H);
+  c.fillStyle="#1a1a1c";c.textBaseline="alphabetic";
+  let y=80;
+  c.textAlign="center";
+  c.font='700 52px '+DISP;c.fillText("MRCH RECEIPT",W/2,y);y+=34;
+  c.font='500 16px '+MONO;c.fillStyle="#6b6b70";c.fillText("2026 · LIVE & FESTIVAL",W/2,y);y+=26;
+  c.fillText("— 윤마치(MRCH) —",W/2,y);y+=30;
+  const dash=()=>{c.fillStyle="#1a1a1c";c.textAlign="left";c.font='400 16px '+MONO;c.fillText("-".repeat(Math.floor((W-P*2)/c.measureText("-").width)),P,y);y+=30};
+  dash();
+  rows.forEach(({it,lines})=>{
+    c.textAlign="left";c.fillStyle="#1a1a1c";c.font='500 17px '+MONO;c.fillText(it.d,P,y);
+    c.font=(it.best?'700':'400')+' 18px '+KR;
+    lines.forEach((l,k)=>c.fillText(l,P+110,y+k*26));
+    c.textAlign="right";c.font='500 15px '+MONO;c.fillStyle=it.best?"#6FADCF":"#1a1a1c";
+    c.fillText(it.best?"LOVE IT ♥":"",W-P,y);
+    y+=lines.length*26+14;
+  });
+  y+=4;dash();
+  c.textAlign="left";c.fillStyle="#1a1a1c";c.font='500 20px '+MONO;c.fillText("TOTAL EVENTS",P,y);
+  c.textAlign="right";c.font='700 34px '+DISP;c.fillText(items.length+" / "+N,W-P,y+4);y+=44;
+  const b=items.find(i=>i.best);
+  if(b){c.textAlign="left";c.font='500 15px '+MONO;c.fillStyle="#6FADCF";c.fillText("LOVE IT ♥  "+items.filter(i=>i.best).length,P,y);y+=28}
+  if(memoLines.length){
+    y+=14;c.fillStyle="#6b6b70";c.textAlign="left";c.font='500 14px '+MONO;c.fillText("MEMO",P,y);y+=28;
+    c.fillStyle="#1a1a1c";c.font='400 18px '+KR;memoLines.forEach(l=>{c.fillText(l,P,y);y+=26});y+=6;
+  }
+  if(name){c.textAlign="left";c.fillStyle="#6b6b70";c.font='500 14px '+MONO;c.fillText("NAME  ",P,y+14);c.fillStyle="#1a1a1c";c.font='700 18px '+KR;c.fillText(name,P+70,y+14);y+=40}
+  y+=10;dash();
+  // 바코드 장식
+  let x=P;c.fillStyle="#1a1a1c";
+  for(let k=0;x<W-P-6;k++){const w=2+((k*7)%4);c.fillRect(x,y,w,50);x+=w+3+((k*5)%3)}
+  c.textAlign="center";c.font='400 15px '+KR;c.fillStyle="#6b6b70";c.fillText("윤마치를 사랑하세요",W/2,y+78);
+  show(cv);
+};
+
+const _oldCard=async()=>{
+  await fonts();
+  const items=picked(),memo=$("#memo").value.trim(),name=$("#name").value.trim();
+  const W=1080,H=1350,P=88;
+  const cv=document.createElement("canvas");cv.width=W;cv.height=H;
+  const c=cv.getContext("2d");
+  c.fillStyle="#f5f5f5";c.fillRect(0,0,W,H);
+  c.fillStyle="#1a1a1c";c.fillRect(P,P+100,W-P*2,6);
+  c.textBaseline="alphabetic";c.textAlign="left";
+  c.font='500 28px '+MONO;c.fillStyle="#6b6b70";
+  c.fillStyle="#1a1a1c";c.font='700 150px '+DISP;c.fillText("2026",P,P+290);
+  c.font='700 70px '+DISP;c.fillText("MRCH RECAP",P,P+380);
+  c.font='700 260px '+DISP;c.fillText(String(items.length),P,P+650);
+  const nw=c.measureText(String(items.length)).width;
+  c.font='500 34px '+MONO;c.fillStyle="#6b6b70";c.fillText("/ "+N+" EVENTS",P+nw+24,P+650);
+  let y=P+730;
+  const lv=items.filter(i=>i.best);
+  if(lv.length){
+    c.fillStyle="#6FADCF";c.font='500 30px '+MONO;c.fillText("♥ LOVE IT  "+lv.length,P,y);y+=58;
+    lv.slice(0,3).forEach(x=>{
+      c.font='500 26px '+MONO;c.fillStyle="#6b6b70";c.fillText(x.d,P,y);
+      c.font='700 36px '+KR;c.fillStyle="#1a1a1c";
+      let t=x.t;while(c.measureText(t).width>W-P*2-130)t=t.slice(0,-1);
+      c.fillText(t===x.t?t:t+"…",P+130,y);y+=50;
+    });
+  }
+  if(memo){
+    y+=34;c.fillStyle="#1a1a1c";c.font='400 34px '+KR;
+    wrap(c,memo,W-P*2).slice(0,3).forEach(l=>{c.fillText(l,P,y+10);y+=50});
+  }
+  c.fillStyle="#1a1a1c";c.fillRect(P,H-P-60,W-P*2,3);
+  c.font='500 26px '+KR;c.fillStyle="#6b6b70";c.fillText("윤마치를 사랑하세요",P,H-P-10);
+  if(name){c.textAlign="right";c.font='700 30px '+KR;c.fillStyle="#1a1a1c";c.fillText(name,W-P,H-P-10)}
+  show(cv);
+};
+// ---- 리캡 카드 (월별 기록 레이아웃) ----
+$('#bC').onclick=async()=>{
+  await fonts();
+  const items=picked(),memo=$('#memo').value.trim(),name=$('#name').value.trim();
+  const W=1080,P=88,CW=W-P*2,RED='#d7263d',INK='#1a1a1c',GR='#6b6b70',LN='#d9d5cc';
+  const tc=document.createElement('canvas').getContext('2d');
+  tc.font='400 34px '+KR;
+  const ml=memo?wrap(tc,memo,CW).slice(0,3):[];
+  const yEnd=1500+(ml.length?ml.length*50+10:0),H=yEnd+132;
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;
+  const c=cv.getContext('2d');
+  c.fillStyle='#f5f5f5';c.fillRect(0,0,W,H);c.textBaseline='alphabetic';
+  const T=(s,x,y,f,col,al)=>{c.font=f;c.fillStyle=col;c.textAlign=al||'left';c.fillText(s,x,y)};
+  const R=(x,y,w,h,col)=>{c.fillStyle=col;c.fillRect(x,y,w,h)};
+  const MW=(s,f)=>{c.font=f;return c.measureText(s).width};
+  const lab=(s,x,y)=>{T(s,x,y,'400 28px '+KR,GR);R(x,y+14,MW(s,'400 28px '+KR),2,LN)};
+  T('MRCH',P,P+36,'400 32px '+KR,RED);
+  T('2026 RECAP',P-6,P+200,'700 165px '+DISP,INK);
+  R(P,P+240,CW,3,INK);
+  lab('총 행사 수',P,400);
+  T(String(items.length),P-4,620,'700 220px '+DISP,INK);
+  T('/ '+N+' EVENTS',P+MW(String(items.length),'700 220px '+DISP)+20,620,'500 30px '+MONO,GR);
+  c.strokeStyle=LN;c.lineWidth=2;c.strokeRect(547,361,444,290);
+  T('♥ 최애 무대',574,412,'400 28px '+KR,RED);
+  const lv=items.filter(i=>i.best);
+  if(!lv.length)T('아직 고르지 않음',574,478,'400 32px '+KR,GR);
+  else{
+    const sw=lv.length>3?lv.slice(0,2):lv;
+    sw.forEach((x,k)=>{let t=x.t;c.font='700 30px '+KR;while(c.measureText(t).width>390)t=t.slice(0,-1);T(t===x.t?t:t+'…',574,478+k*54,'700 30px '+KR,INK)});
+    if(lv.length>3)T('외 '+(lv.length-2)+'개',574,478+2*54,'400 28px '+KR,GR);
+  }
+  lab('월별 기록',P,745);
+  const cnt=Array(12).fill(0);items.forEach(it=>cnt[parseInt(it.d)-1]++);
+  const mx=Math.max(1,...cnt),sh=Math.min(62,Math.floor(290/mx)-4),pitch=CW/12,yb=1085;
+  ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'].forEach((m,i)=>{
+    const x=P+i*pitch;
+    if(!cnt[i])R(x,yb-4,62,4,LN);
+    for(let k=0;k<cnt[i];k++)R(x,yb-(k+1)*sh-k*4,62,sh,INK);
+    T(m,x,1128,'400 22px '+MONO,cnt[i]?INK:LN);
+  });
+  R(P,1165,CW,2,LN);
+  const cw=CW/3;
+  [['전체 일정 중',Math.round(items.length/N*100)+'%'],['첫 행사',items[0].d],['마지막 행사',items[items.length-1].d]].forEach((s,i)=>{
+    const x=P+i*cw+(i?30:0);
+    if(i)R(P+i*cw,1190,2,130,LN);
+    T(s[0],x,1225,'400 26px '+KR,GR);
+    T(s[1],x,1300,'700 84px '+DISP,INK);
+  });
+  R(P,1345,CW,2,LN);
+  const cats=['단독','콘서트','페스티벌','대학축제','방송','해외','기타'],cc={};
+  cats.forEach(k=>cc[k]=0);
+  items.forEach(it=>it.g.forEach(t=>{if(t in cc)cc[t]++}));
+  cats.forEach((k,i)=>{
+    const x=P+i*CW/7;
+    T(k,x,1392,'400 24px '+KR,GR);
+    T(cc[k]+'회',x,1445,'700 38px '+KR,cc[k]?INK:'#b8b4ab');
+  });
+  let y=1500;ml.forEach(l=>{T(l,P,y,'400 34px '+KR,INK);y+=50});
+  R(P,yEnd,CW,2,INK);
+  T('윤마치를 사랑하세요',P,yEnd+62,'500 26px '+KR,GR);
+  if(name)T(name,W-P,yEnd+62,'700 30px '+KR,INK,'right');
+  show(cv);
+};
+</script>
+</body>
+</html>
