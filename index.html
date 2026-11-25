@@ -109,6 +109,7 @@ const E=[
 {d:"09.19",t:"2026 우리 모모콘",v:"",g:["콘서트"]},
 {d:"09.30",t:"교통대학교 충주캠퍼스 축제",v:"",g:[U]},
 {d:"10.04",t:"2026 부산 국제 록 페스티벌",v:"",g:[F]},
+{d:"10.07",t:"평택대학교 축제",v:"",g:[U]},
 {d:"10.25",t:"취소됨",v:"",g:["취소"],x:true},
 {d:"10.31",t:"단독콘서트 [공생관계 : We Live Together]",v:"YES24 LIVE HALL · 18:00",g:[S1]},
 {d:"11.01",t:"단독콘서트 [공생관계 : We Live Together]",v:"YES24 LIVE HALL · 17:00",g:[S1]},
@@ -146,11 +147,12 @@ const LOC={
 "2026 우리 모모콘":"경기-과천시",
 "교통대학교 충주캠퍼스 축제":"충북-충주시",
 "2026 부산 국제 록 페스티벌":"부산시",
+"평택대학교 축제":"경기-평택시",
 "단독콘서트 [공생관계 : We Live Together]":"서울시",
 "2026 문학나눔캠프":"강원-춘천시",
 "원더리벳 2026":"경기-고양시"
 };
-const KEY="mrch26b",$=s=>document.querySelector(s);
+const KEY="mrch26c",$=s=>document.querySelector(s);
 let S={};
 try{S=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){S={}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
